@@ -6,6 +6,13 @@ const emailRoutes = require('./routes/email');
 
 const port = process.env.PORT || 3333;
 
+const express = require('express');
+const bodyParser = require('body-parser');
+//create app
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 // COSR handler
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
