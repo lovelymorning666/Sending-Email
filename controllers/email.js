@@ -25,12 +25,12 @@ const sendEmail = async (req, res, next) => {
   const data = {
     personalizations: [
       {
-        to: [{ email: req.query.to }],
-        subject: req.query.subject,
+        to: [{ email: req.body.to }],
+        subject: req.body.subject,
       },
     ],
-    from: { email: req.query.from },
-    content: [{ type: 'text/plain', value: req.query.content }],
+    from: { email: req.body.from },
+    content: [{ type: 'text/plain', value: req.body.content }],
   };
 
   const options = {
@@ -47,18 +47,11 @@ const sendEmail = async (req, res, next) => {
   console.log('???=>data', options.data);
 
   try {
-    // const result = await axios.request(options);
-    return res.json(options.data);
+    const result = await axios.request(options);
+    return res.json(result.data);
   } catch (err) {
     return next(new HttpError(err, 404));
   }
-
-  // try {
-  //   const result = await axios.request(options);
-  //   return res.json(result.data);
-  // } catch (err) {
-  //   return next(new HttpError(err, 404));
-  // }
 };
 
 module.exports = {
