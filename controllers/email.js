@@ -1,5 +1,5 @@
-const knex = require('../database/conection');
 const axios = require('axios');
+const knex = require('../database/conection');
 const HttpError = require('../utils/httpError');
 
 const sendEmail = async (req, res, next) => {
@@ -16,7 +16,11 @@ const sendEmail = async (req, res, next) => {
   //   ],
   // };
 
-  // console.log('???=>req', req.query);
+  console.log(
+    '_________________________________________________________________________________________________________________________________'
+  );
+  // console.log('???=>req', req.body);
+  console.log('???=>req', req.body);
 
   const data = {
     personalizations: [
@@ -43,11 +47,18 @@ const sendEmail = async (req, res, next) => {
   console.log('???=>data', options.data);
 
   try {
-    const result = await axios.request(options);
-    return res.json(result.data);
+    // const result = await axios.request(options);
+    return res.json(options.data);
   } catch (err) {
     return next(new HttpError(err, 404));
   }
+
+  // try {
+  //   const result = await axios.request(options);
+  //   return res.json(result.data);
+  // } catch (err) {
+  //   return next(new HttpError(err, 404));
+  // }
 };
 
 module.exports = {
