@@ -1,13 +1,14 @@
-require('dotenv').config();
-const logger = require('./middlewares/logger');
+import dotenv from 'dotenv';
+dotenv.config();
+import logger from "./middlewares/logger.js";
 
-const testRoutes = require('./routes/test');
-const emailRoutes = require('./routes/email');
+import testRoutes from './routes/test.js';
+import emailRoutes from './routes/email.js';
 
 const port = process.env.PORT || 3333;
 
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 //create app
 const app = express();
 app.use(bodyParser.json());

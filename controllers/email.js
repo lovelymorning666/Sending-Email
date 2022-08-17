@@ -1,6 +1,6 @@
-const axios = require('axios');
-const knex = require('../database/conection');
-const HttpError = require('../utils/httpError');
+import axios from 'axios';
+import knex from '../database/conection.js';
+import HttpError from '../utils/httpError.js';
 
 const sendEmail = async (req, res, next) => {
   // const data = {
@@ -54,6 +54,6 @@ const sendEmail = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export {
   sendEmail,
 };
